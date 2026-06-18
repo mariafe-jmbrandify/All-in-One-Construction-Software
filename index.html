@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BuildOps Command Center</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img">
+              <path d="M3 20h18M5 20V8l7-4 7 4v12M9 20v-7h6v7M8 10h2M14 10h2" />
+            </svg>
+          </div>
+          <div>
+            <strong>BuildOps</strong>
+            <span>Construction Suite</span>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-item active" data-view="overview">
+            <span class="nav-icon" aria-hidden="true">H</span>
+            Overview
+          </button>
+          <button class="nav-item" data-view="crm">
+            <span class="nav-icon" aria-hidden="true">C</span>
+            CRM
+          </button>
+          <button class="nav-item" data-view="integrations">
+            <span class="nav-icon" aria-hidden="true">I</span>
+            Integrations
+          </button>
+          <button class="nav-item" data-view="projects">
+            <span class="nav-icon" aria-hidden="true">P</span>
+            Projects
+          </button>
+          <button class="nav-item" data-view="estimates">
+            <span class="nav-icon" aria-hidden="true">$</span>
+            Estimates
+          </button>
+          <button class="nav-item" data-view="schedule">
+            <span class="nav-icon" aria-hidden="true">S</span>
+            Schedule
+          </button>
+          <button class="nav-item" data-view="costs">
+            <span class="nav-icon" aria-hidden="true">F</span>
+            Costs
+          </button>
+          <button class="nav-item" data-view="crew">
+            <span class="nav-icon" aria-hidden="true">W</span>
+            Crew
+          </button>
+          <button class="nav-item" data-view="safety">
+            <span class="nav-icon" aria-hidden="true">!</span>
+            Safety
+          </button>
+          <button class="nav-item" data-view="docs">
+            <span class="nav-icon" aria-hidden="true">D</span>
+            Docs
+          </button>
+        </nav>
+
+        <div class="sidebar-panel">
+          <span>Live company health</span>
+          <strong id="sidebarHealth">92%</strong>
+          <div class="mini-meter"><span style="width: 92%"></span></div>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">All-in-one command center</p>
+            <h1 id="viewTitle">Company Overview</h1>
+          </div>
+          <div class="topbar-actions">
+            <label class="search">
+              <span aria-hidden="true">?</span>
+              <input id="searchInput" type="search" placeholder="Search projects, leads, work orders, approvals, people">
+            </label>
+            <button class="icon-button" id="themeToggle" type="button" title="Toggle contrast" aria-label="Toggle contrast">O</button>
+            <button class="primary-button" id="newProjectButton" type="button">New Project</button>
+          </div>
+        </header>
+
+        <section class="summary-grid" data-view-section="overview projects estimates schedule costs crew safety docs integrations crm" aria-label="Company metrics">
+          <article class="metric">
+            <span>Active Projects</span>
+            <strong id="metricProjects">0</strong>
+            <small id="metricProjectTrend">0 on track</small>
+          </article>
+          <article class="metric">
+            <span>Open Contract Value</span>
+            <strong id="metricValue">$0</strong>
+            <small>Committed plus pending change orders</small>
+          </article>
+          <article class="metric">
+            <span>Work Orders Synced</span>
+            <strong id="metricWorkOrders">0</strong>
+            <small id="metricWorkOrderTrend">0 appointments protected</small>
+          </article>
+          <article class="metric alert">
+            <span>Estimate Approvals</span>
+            <strong id="metricApprovals">0</strong>
+            <small id="metricApprovalTrend">0 follow-ups due</small>
+          </article>
+        </section>
+
+        <section class="filter-bar" data-view-section="overview projects integrations schedule crew costs" aria-label="Operational filters">
+          <label>
+            Property Management
+            <select id="propertyManagementFilter">
+              <option value="all">All property management</option>
+            </select>
+          </label>
+          <label>
+            Project by Trade
+            <select id="tradeFilter">
+              <option value="all">All trades</option>
+            </select>
+          </label>
+          <label>
+            Technician
+            <select id="technicianFilter">
+              <option value="all">All technicians</option>
+            </select>
+          </label>
+          <label>
+            Project Manager
+            <select id="projectManagerFilter">
+              <option value="all">All project managers</option>
+            </select>
+          </label>
+          <label>
+            Approved Tech / Contractor Unit Cost
+            <select id="unitCostFilter">
+              <option value="all">All unit costs</option>
+              <option value="approved">Approved</option>
+              <option value="missing">Missing approval</option>
+            </select>
+          </label>
+          <label>
+            Approved Client Unit Price
+            <select id="clientPriceFilter">
+              <option value="all">All client prices</option>
+              <option value="approved">Approved</option>
+              <option value="missing">Missing approval</option>
+            </select>
+          </label>
+          <label>
+            Billing / Work Status
+            <select id="billingStatusFilter">
+              <option value="all">All statuses</option>
+              <option value="paid">Paid</option>
+              <option value="overdue">Overdue</option>
+              <option value="need-invoice">Need to send invoice</option>
+              <option value="work-in-progress">Work in progress</option>
+            </select>
+          </label>
+          <button class="secondary-button" id="clearFiltersButton" type="button">Clear Filters</button>
+        </section>
+
+        <section class="content-layout" data-view-section="overview projects safety docs">
+          <section class="panel primary-panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow" id="tableEyebrow">Portfolio</p>
+                <h2 id="sectionTitle">Project Control Board</h2>
+              </div>
+              <div class="segmented-control" aria-label="Project status filter">
+                <button class="segment active" data-status="all">All</button>
+                <button class="segment" data-status="on-track">On Track</button>
+                <button class="segment" data-status="watch">Watch</button>
+                <button class="segment" data-status="critical">Critical</button>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>Phase</th>
+                    <th>Budget</th>
+                    <th>Schedule</th>
+                    <th>Project Manager</th>
+                    <th>Technician</th>
+                  </tr>
+                </thead>
+                <tbody id="projectRows"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <aside class="panel side-panel">
+            <div class="panel-header compact">
+              <div>
+                <p class="eyebrow">Today</p>
+                <h2>Field Priorities</h2>
+              </div>
+              <button class="icon-button" id="shufflePriorities" type="button" title="Refresh priorities" aria-label="Refresh priorities">R</button>
+            </div>
+            <div id="priorityList" class="priority-list"></div>
+          </aside>
+        </section>
+
+        <section class="integration-grid" id="integrationWorkspace" data-view-section="overview integrations costs" aria-label="Property management integration workspace">
+          <article class="panel integration-main">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Property Management Access</p>
+                <h2>Work Order Sync Center</h2>
+              </div>
+              <button class="secondary-button" id="syncWorkOrdersButton" type="button">Sync Work Orders</button>
+            </div>
+            <div class="connector-strip" id="connectorList"></div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Work Order</th>
+                    <th>Property</th>
+                    <th>Tenant</th>
+                    <th>Schedule</th>
+                    <th>Assigned Team</th>
+                    <th>Communication</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="workOrderRows"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-header compact">
+              <div>
+                <p class="eyebrow">No Webhooks Needed</p>
+                <h2>Access Method</h2>
+              </div>
+            </div>
+            <div class="sync-flow">
+              <div>
+                <strong>1. Read access</strong>
+                <span>Connect with API credentials, database view, CSV export folder, or email parser.</span>
+              </div>
+              <div>
+                <strong>2. Pull work orders</strong>
+                <span>Check open, changed, and cancelled work orders on a schedule.</span>
+              </div>
+              <div>
+                <strong>3. Confirm appointments</strong>
+                <span>Send reminders to tenants and managers before crews roll out.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-header compact">
+              <div>
+                <p class="eyebrow">Automation</p>
+                <h2>Accepted Work Order Flow</h2>
+              </div>
+            </div>
+            <div id="automationList" class="automation-list"></div>
+          </article>
+
+          <article class="panel integration-wide">
+            <div class="panel-header compact">
+              <div>
+                <p class="eyebrow">Messages</p>
+                <h2>Tenant and Manager Communication</h2>
+              </div>
+            </div>
+            <div id="communicationList" class="schedule-list"></div>
+          </article>
+        </section>
+
+        <section class="technician-schedule-grid" id="technicianScheduleWorkspace" data-view-section="schedule" aria-label="Technician schedule by date">
+          <article class="panel technician-schedule-main">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Schedule</p>
+                <h2>Technician Schedule From Today Forward</h2>
+              </div>
+            </div>
+            <div id="technicianScheduleBoard" class="technician-schedule-board"></div>
+          </article>
+        </section>
+
+        <section class="crew-info-grid" id="crewInfoWorkspace" data-view-section="crew" aria-label="Crew information">
+          <article class="panel crew-info-main">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Crew Info</p>
+                <h2>Assigned Work, Approved Unit Costs, and Pending Tasks</h2>
+              </div>
+            </div>
+            <div id="crewInfoBoard" class="crew-info-board"></div>
+          </article>
+        </section>
+
+        <section class="approval-grid" id="approvalWorkspace" data-view-section="overview estimates costs" aria-label="Estimate approval workspace">
+          <article class="panel approval-main">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Estimate Approval Board</p>
+                <h2>Management Follow-Up Automation</h2>
+              </div>
+              <div class="segmented-control" aria-label="Approval aging filter">
+                <button class="segment active" data-approval-filter="all">All</button>
+                <button class="segment" data-approval-filter="due">Due</button>
+                <button class="segment" data-approval-filter="overdue">Overdue</button>
+                <button class="segment" data-approval-filter="approved">Approved</button>
+              </div>
+            </div>
+            <div class="approval-board" id="approvalBoard"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-header compact">
+              <div>
+                <p class="eyebrow">Automation</p>
+                <h2>Follow-Up Cadence</h2>
+              </div>
+            </div>
+            <div class="cadence-list" id="cadenceList"></div>
+          </article>
+        </section>
+
+        <section class="crm-grid" id="crmWorkspace" data-view-section="overview crm" aria-label="CRM workspace">
+          <article class="panel crm-board">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">CRM</p>
+                <h2>Lead and Sales Pipeline</h2>
+              </div>
+              <div class="segmented-control" aria-label="CRM stage filter">
+                <button class="segment active" data-crm-stage="all">All</button>
+                <button class="segment" data-crm-stage="lead">Leads</button>
+                <button class="segment" data-crm-stage="proposal">Proposals</button>
+                <button class="segment" data-crm-stage="won">Won</button>
+              </div>
+            </div>
+            <div class="pipeline-board" id="crmPipeline"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-header compact">
+              <div>
+                <p class="eyebrow">Revenue</p>
+                <h2>Subscriptions</h2>
+              </div>
+              <button class="text-button" id="newLeadButton" type="button">Add Lead</button>
+            </div>
+            <div class="subscription-metrics">
+              <div>
+                <span>Monthly Recurring</span>
+                <strong id="crmMrr">$0</strong>
+              </div>
+              <div>
+                <span>Renewals Due</span>
+                <strong id="crmRenewals">0</strong>
+              </div>
+            </div>
+            <div id="subscriptionList" class="stack-list"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-header compact">
+              <div>
+                <p class="eyebrow">Follow Up</p>
+                <h2>Sales Activity</h2>
+              </div>
+            </div>
+            <div id="activityList" class="schedule-list"></div>
+          </article>
+        </section>
+
+        <section class="detail-grid" data-view-section="overview estimates costs">
+          <article class="panel">
+            <div class="panel-header compact">
+              <div>
+                <p class="eyebrow">Estimating</p>
+                <h2>Bid Pipeline</h2>
+              </div>
+              <button class="text-button" data-view="estimates">Open</button>
+            </div>
+            <div id="estimateCards" class="stack-list"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-header compact">
+              <div>
+                <p class="eyebrow">Schedule</p>
+                <h2>Lookahead</h2>
+              </div>
+              <button class="text-button" data-view="schedule">Open</button>
+            </div>
+            <div id="scheduleList" class="schedule-list"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-header compact">
+              <div>
+                <p class="eyebrow">Finance</p>
+                <h2>Cash Flow</h2>
+              </div>
+              <button class="text-button" data-view="costs">Open</button>
+            </div>
+            <div class="cash-chart" id="cashChart" aria-label="Cash flow chart"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="projectDialog">
+      <form method="dialog" class="dialog-card" id="projectForm">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Quick Add</p>
+            <h2>New Project</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Close">X</button>
+        </div>
+        <label>
+          Project name
+          <input name="name" required placeholder="Maple Street Apartments">
+        </label>
+        <label>
+          Client
+          <input name="client" required placeholder="Northline Development">
+        </label>
+        <div class="form-grid">
+          <label>
+            Budget
+            <input name="budget" type="number" min="0" step="1000" required placeholder="2400000">
+          </label>
+          <label>
+            Margin %
+            <input name="margin" type="number" min="0" max="100" step="0.1" required placeholder="18">
+          </label>
+        </div>
+        <label>
+          Phase
+          <select name="phase">
+            <option>Preconstruction</option>
+            <option>Procurement</option>
+            <option>Sitework</option>
+            <option>Framing</option>
+            <option>MEP Rough-In</option>
+            <option>Finishes</option>
+            <option>Closeout</option>
+          </select>
+        </label>
+        <menu>
+          <button class="secondary-button" value="cancel">Cancel</button>
+          <button class="primary-button" value="default">Add Project</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <dialog id="leadDialog">
+      <form method="dialog" class="dialog-card" id="leadForm">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">CRM</p>
+            <h2>New Lead</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Close">X</button>
+        </div>
+        <label>
+          Company
+          <input name="company" required placeholder="Brightline Builders">
+        </label>
+        <label>
+          Contact
+          <input name="contact" required placeholder="Dana Cooper">
+        </label>
+        <div class="form-grid">
+          <label>
+            Deal value
+            <input name="value" type="number" min="0" step="1000" required placeholder="125000">
+          </label>
+          <label>
+            Monthly subscription
+            <input name="mrr" type="number" min="0" step="100" required placeholder="2400">
+          </label>
+        </div>
+        <label>
+          Stage
+          <select name="stage">
+            <option value="lead">Lead</option>
+            <option value="qualified">Qualified</option>
+            <option value="proposal">Proposal</option>
+            <option value="won">Won</option>
+          </select>
+        </label>
+        <menu>
+          <button class="secondary-button" value="cancel">Cancel</button>
+          <button class="primary-button" value="default">Add Lead</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
