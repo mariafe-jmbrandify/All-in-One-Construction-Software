@@ -1,19 +1,45 @@
-# All-in-One Construction Software
+# FIELDWORKS / OS
+### Construction Operations Intelligence Platform
 
-A browser-based operations dashboard for construction companies that need one place to manage projects, property management work orders, CRM, estimates, dispatch, scheduling, crews, and billing follow-up.
+FIELDWORKS / OS is an AI-powered construction operations platform built for contractors, project managers, property management vendors, and service companies that need one centralized system to manage operations from lead to payment.
 
-## What It Includes
+It unifies:
 
-- Project control board with project manager and technician visibility
-- CRM pipeline for leads, sales, subscriptions, and follow-ups
-- Property management work order sync workflow
-- Tenant and property manager communication tracking
-- Technician dispatch automation with acceptance, decline, no-response, KPI, and reassignment states
-- Tenant schedule confirmation workflow by SMS/email concept
-- Technician schedule view from today forward
-- Crew info view with assigned work, approved unit costs, pending estimates, confirmations, and job clarifications
-- Estimate approval board with automated follow-up timing
-- Filters for property management, trade, technician, project manager, cost approval, client price approval, billing status, and work status
+* CRM Pipeline
+* Project Management
+* Property Management Work Orders
+* Dispatch Automation
+* Scheduling
+* Crew Performance
+* Estimates & Approvals
+* Billing & Collections
+* Revenue Analytics
+* AI Operational Insights
+
+Built to eliminate operational bottlenecks, improve visibility, and maximize profitability.
+
+## Product Preview
+
+### Command Center
+
+Real-time operational overview of projects, dispatch status, estimates, and communication.
+
+### Analytics Dashboard
+
+Track revenue, conversion funnel, approval rates, collections, and AI insights.
+
+### Dispatch Automation
+
+Monitor technician response, SLA breaches, reassignment, and live dispatch KPIs.
+
+### Work Order Management
+
+Sync property management work orders and centralize job progress.
+
+### Billing & Collections
+
+Track invoices, outstanding receivables, and payment follow-ups.
+
 
 ## Live App
 
