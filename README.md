@@ -1,6 +1,6 @@
 # FIELDWORKS / OS
-### All-in-One Construction Operations System
-### A JM Brandify Product
+### AI-powered construction operations intelligence platform for dispatch, work orders, estimates, and revenue visibility.
+### Designed & Built by JM Brandify
 
 FIELDWORKS / OS is an AI-powered operations intelligence platform built for contractors, property managers, and service companies struggling with fragmented workflows, delayed dispatching, missed estimates, and revenue leakage.
 
@@ -48,6 +48,13 @@ Sync property management work orders and centralize job progress.
 
 Track invoices, outstanding receivables, and payment follow-ups.
 
+## Development Stage
+
+- Current Phase: Private Beta Prototype
+- Status: UI / Workflow Validation
+- Backend: In Planning
+- Launch: TBD
+
 ## Business Impact
 
 ✔ Reduce dispatch delays and missed assignments  
@@ -57,14 +64,38 @@ Track invoices, outstanding receivables, and payment follow-ups.
 ✔ Prevent revenue leakage  
 ✔ Centralize communication across PMs, tenants, and crews  
 
-## Built With
+## Tech Stack
+
+Frontend:
 - HTML
 - CSS
 - JavaScript
-- Lovable (UI prototyping)
-- GitHub
-- Planned backend: Supabase / PostgreSQL
-- Planned integrations: AppFolio, Property Meld, Housecall Pro, Zapier
+
+Prototype / Design:
+- Lovable
+- GitHub Pages
+
+Planned Backend:
+- Supabase
+- PostgreSQL
+
+Planned Integrations:
+- AppFolio
+- Property Meld
+- Housecall Pro
+- Zapier
+
+  ## Problem We Solve
+
+Construction and service businesses often lose revenue due to:
+
+- Delayed technician dispatch
+- Poor estimate follow-up
+- Untracked work orders
+- Invoice collection bottlenecks
+- Fragmented communication across teams
+
+FIELDWORKS / OS centralizes these workflows into one operational command center.
   
 ## Private Demo Access
 
