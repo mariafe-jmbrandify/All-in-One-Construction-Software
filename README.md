@@ -21,22 +21,27 @@ Built to eliminate operational bottlenecks, improve visibility, and maximize pro
 ## Product Preview
 
 ### Command Center
+![Command Center](command-center.jpeg)
 
 Real-time operational overview of projects, dispatch status, estimates, and communication.
 
 ### Analytics Dashboard
+![Analytics Dashboard](analytics-dashboard.jpeg)
 
 Track revenue, conversion funnel, approval rates, collections, and AI insights.
 
 ### Dispatch Automation
+![Dispatch Board](dispatch-board.jpeg)
 
 Monitor technician response, SLA breaches, reassignment, and live dispatch KPIs.
 
 ### Work Order Management
+![Work Orders](work-orders.jpeg)
 
 Sync property management work orders and centralize job progress.
 
 ### Billing & Collections
+![Billing Dashboard](billing-dashboard.jpeg)
 
 Track invoices, outstanding receivables, and payment follow-ups.
 
