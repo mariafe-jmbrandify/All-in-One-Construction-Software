@@ -66,11 +66,24 @@ Track invoices, outstanding receivables, and payment follow-ups.
 - Planned backend: Supabase / PostgreSQL
 - Planned integrations: AppFolio, Property Meld, Housecall Pro, Zapier
   
-## Live App
+## Private Demo Access
 
-Open `index.html` in a browser, or enable GitHub Pages for this repository and use:
+FIELDWORKS / OS is currently in active prototype development under **JM Brandify**.
 
-`https://mariafe-jmbrandify.github.io/All-in-One-Construction-Software/`
+To protect proprietary workflow architecture, automation logic, and operational intelligence systems, the full interactive demo is not publicly accessible.
+
+#### Availability
+
+Private live walkthroughs are available for:
+
+* Construction company owners
+* Property management vendors
+* Operations managers
+* Strategic partners / investors
+
+**Interactive demo available upon discovery call.**
+
+If you want to explore how FIELDWORKS / OS can improve dispatching, estimates, work order management, and revenue visibility for your business, feel free to connect.
 
 ## Files
 
